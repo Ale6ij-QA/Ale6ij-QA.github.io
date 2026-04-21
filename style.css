@@ -1,0 +1,488 @@
+/* ========================================= */
+/* БАЗОВЫЕ НАСТРОЙКИ (ЗАЩИТА ОТ КАРЕТОК)     */
+/* ========================================= */
+
+* {
+    outline: none !important; 
+}
+
+img {
+    -webkit-user-drag: none; 
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* ========================================= */
+/* ПЕРЕМЕННЫЕ ТЕМ (ЦВЕТА)                    */
+/* ========================================= */
+:root {
+    --bg-color: #1a1a1a;
+    --text-color: #f0f0f0;
+    --header-bg: #2a2a2a;
+    --section-bg: #222222;
+    --border-muted: #444444;
+    --text-muted: #aaaaaa;
+    --text-highlight: #e0e0e0;
+    --cloud-bg: #ffffff;
+    --cloud-text: #000000;
+    --modal-content: #1a1a1a;
+    --accent-color: #ff4500; 
+    --shadow-glow: rgba(255, 69, 0, 0.1);
+}
+
+[data-theme="light"] {
+    --bg-color: #f5eedf; 
+    --text-color: #2c2418;
+    --header-bg: #fdfbf7;
+    --section-bg: #fdfbf7; 
+    --border-muted: #e2d7c1;
+    --text-muted: #5e4e3b;
+    --text-highlight: #4a3b2c;
+    --cloud-bg: #2c2418;
+    --cloud-text: #f9f3e6;
+    --modal-content: #f5eedf; 
+    --accent-color: #c28a4e; 
+    --shadow-glow: rgba(194, 138, 78, 0.15);
+}
+
+/* ========================================= */
+/* ОСНОВНЫЕ СТИЛИ                            */
+/* ========================================= */
+body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--bg-color); 
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    overflow-x: hidden; 
+    transition: background-color 0.4s ease, color 0.4s ease; 
+    caret-color: transparent; 
+}
+
+.container { 
+    width: 90%; 
+    max-width: 900px; 
+    margin: 0 auto; 
+    padding: 20px; 
+    z-index: 1; 
+}
+
+header {
+    background-color: var(--header-bg);
+    padding: 40px 0;
+    border-bottom: 3px solid var(--accent-color); 
+    text-align: center;
+    transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+h1 { margin: 0; font-size: 2.8rem; color: var(--accent-color); transition: color 0.4s ease;}
+.subtitle { margin: 5px 0 0; font-size: 1.1rem; color: var(--text-muted); }
+
+h2 { 
+    color: var(--accent-color); 
+    border-bottom: 1px solid var(--border-muted); 
+    border-left: 6px solid var(--accent-color); 
+    padding-left: 15px;
+    padding-bottom: 10px; 
+    margin-top: 0; 
+    transition: color 0.4s ease, border-color 0.4s ease;
+}
+
+
+/* ========================================= */
+/* ФОНОВЫЕ ЭФФЕКТЫ (МАГИЯ ГЛУБИНЫ)           */
+/* ========================================= */
+
+.bg-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: -10; 
+    pointer-events: none; 
+    
+    /* ПУТЬ К ФОНУ ЧЕРЕЗ ПАПКУ IMG */
+    background-image: url('img/back_night.png'); 
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    background-size: 100% auto; 
+    opacity: 0.3; 
+    transition: filter 0.4s ease, opacity 0.4s ease;
+}
+
+[data-theme="light"] .bg-overlay {
+    filter: invert(70%) sepia(50%) saturate(300%) hue-rotate(350deg) brightness(90%);
+    opacity: 0.25; 
+}
+
+.leaf-shadows {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: -9; 
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    
+    background: 
+        radial-gradient(circle at 50% 50%, rgba(194, 138, 78, 0.04) 10%, transparent 60%),
+        radial-gradient(circle at 80% 20%, rgba(194, 138, 78, 0.03) 10%, transparent 50%);
+    background-size: 800px 800px;
+}
+
+[data-theme="light"] .leaf-shadows {
+    opacity: 1; 
+    animation: shadow-breathe 15s infinite alternate ease-in-out;
+}
+
+@keyframes shadow-breathe {
+    0% { transform: scale(1) translate(0, 0); }
+    100% { transform: scale(1.1) translate(-2%, 2%); }
+}
+
+
+/* ========================================= */
+/* КНОПКА ПЕРЕКЛЮЧЕНИЯ ТЕМЫ                  */
+/* ========================================= */
+.theme-switch-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+}
+.theme-switch {
+    display: inline-block;
+    height: 34px;
+    position: relative;
+    width: 64px;
+}
+.theme-switch input { display: none; }
+.slider {
+    background-color: var(--section-bg);
+    bottom: 0; left: 0; right: 0; top: 0;
+    position: absolute;
+    cursor: pointer;
+    transition: .4s;
+    border-radius: 34px;
+    border: 2px solid var(--accent-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5px;
+    box-sizing: border-box;
+}
+.slider:before {
+    background-color: var(--accent-color);
+    bottom: 3px; left: 3px;
+    content: "";
+    height: 24px; width: 24px;
+    position: absolute;
+    transition: .4s;
+    border-radius: 50%;
+    z-index: 2;
+}
+input:checked + .slider { background-color: var(--header-bg); }
+input:checked + .slider:before { transform: translateX(30px); }
+.sun-icon, .moon-icon { font-size: 14px; z-index: 1; }
+
+/* ========================================= */
+/* ОСТАЛЬНЫЕ БЛОКИ                           */
+/* ========================================= */
+.boxed-section {
+    position: relative; margin: 40px 0;
+    background: var(--section-bg);
+    padding: 30px;
+    border: 2px dashed var(--accent-color); 
+    border-radius: 8px;
+    box-shadow: 0 0 15px var(--shadow-glow);
+    transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.about-hero { padding: 20px; }
+.hero-image-wrapper { position: relative; width: 100%; max-width: 800px; margin: 0 auto; display: block; }
+.hero-bg { width: 100%; height: auto; display: block; border-radius: 8px; }
+
+.cloud-text {
+    position: absolute; top: 10%; left: 2%; width: 42%; 
+    background-color: var(--cloud-bg); border-radius: 20px; padding: 20px; 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); box-sizing: border-box; 
+    transition: background-color 0.4s ease;
+}
+.cloud-text::after {
+    content: ''; position: absolute; top: 50%; right: -20px;
+    transform: translateY(-50%); border-width: 15px 0 15px 20px;
+    border-style: solid; border-color: transparent transparent transparent var(--cloud-bg);
+    transition: border-color 0.4s ease;
+}
+.cloud-text p { font-weight: bold; font-size: 0.9rem; line-height: 1.4; margin: 0; color: var(--cloud-text); transition: color 0.4s ease;}
+
+.stack-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px 40px; margin-top: 20px; }
+
+.stack-category h3 { 
+    color: var(--text-highlight); 
+    font-size: 1.1rem; 
+    margin-bottom: 10px; 
+    border-bottom: 1px solid var(--border-muted); 
+    border-left: 4px solid var(--accent-color);
+    padding-left: 10px;
+    padding-bottom: 5px; 
+    display: inline-block; 
+}
+
+.philosophy-section { min-height: 200px; display: flex; align-items: center; justify-content: flex-end; z-index: 10; }
+.solo-character { position: absolute; bottom: -42px; left: 10%; height: 320px; z-index: 50; pointer-events: none; }
+.cloud-right { position: relative; top: 0; margin-right: 10%; width: 50%; z-index: 40; }
+.cloud-right::after { right: auto; left: -20px; border-width: 15px 20px 15px 0; border-color: transparent var(--cloud-bg) transparent transparent; }
+
+.content-block h3 { color: var(--text-highlight); margin-bottom: 5px; }
+.content-block p { margin-top: 0; color: var(--text-muted); }
+
+ul { list-style-type: none; padding-left: 0; }
+ul li { position: relative; padding-left: 20px; margin-bottom: 12px; }
+ul li::before { 
+    content: '▹'; 
+    position: absolute; 
+    left: 0; 
+    color: var(--accent-color); 
+    font-weight: bold; 
+    transition: color 0.4s ease;
+}
+
+a { color: var(--accent-color); text-decoration: none; transition: color 0.3s ease; }
+a:hover { color: var(--text-highlight); text-decoration: underline; }
+
+
+/* ========================================= */
+/* ПАСХАЛКИ: СТАТИЧНЫЕ GIF ЖУКИ              */
+/* ========================================= */
+
+.peekaboo-top-right,
+.peekaboo-left,
+.peekaboo-bottom-right {
+    position: absolute;
+    z-index: -1; 
+    opacity: 0;
+    pointer-events: none; 
+}
+
+[data-theme="light"] .peekaboo-top-right,
+[data-theme="light"] .peekaboo-left,
+[data-theme="light"] .peekaboo-bottom-right {
+    opacity: 1; 
+}
+
+/* --- ЖУК 1: Стек (Сверху справа) --- */
+.peekaboo-top-right {
+    top: -65px;    
+    right: 50px;   
+    width: 300px;   
+    transform: rotate(-45deg); 
+}
+
+/* --- ЖУК 2: Опыт работы (Слева) --- */
+.peekaboo-left {
+    top: -70px;     
+    left: -100px;   
+    width: 300px;  
+    transform: scaleX(-1) rotate(45deg); 
+}
+
+/* --- ЖУК 3: Сертификаты (Снизу справа) --- */
+.peekaboo-bottom-right {
+    bottom: -100px; 
+    right: 250px;   
+    width: 300px;  
+    transform: scaleY(-1) rotate(45deg); 
+}
+
+
+/* ========================================= */
+/* МАГИЯ ЖУКОВ И СВЕТЛЯЧКОВ                  */
+/* ========================================= */
+.bug {
+    position: absolute;
+    cursor: pointer;
+    z-index: 10000; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: firefly-float var(--anim-dur) ease-in-out infinite var(--anim-del);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+
+    font-size: 0;
+    color: transparent;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
+/* --- ТЕМНАЯ ТЕМА (СВЕТЛЯЧКИ) --- */
+.bug::before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: #d4ff00; 
+    border-radius: 50%;
+    box-shadow: 0 0 15px 5px rgba(212, 255, 0, 0.6);
+    opacity: 1;
+    transition: opacity 0.4s ease;
+    animation: firefly-pulse 2s infinite alternate;
+}
+
+.bug img {
+    width: 40px;
+    opacity: 0; 
+    transform: scale(0);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* --- СВЕТЛАЯ ТЕМА (ТВОИ ПИКСЕЛЬНЫЕ ЖУКИ) --- */
+[data-theme="light"] .bug {
+    animation: bug-crawl calc(var(--anim-dur) * 0.8) ease-in-out infinite var(--anim-del);
+}
+
+[data-theme="light"] .bug::before {
+    opacity: 0; 
+    animation: none;
+}
+
+[data-theme="light"] .bug img {
+    opacity: 1; 
+    transform: scale(1);
+}
+
+.bug.caught {
+    animation: none !important; 
+    opacity: 0 !important;
+    transform: scale(0) rotate(360deg) !important;
+    pointer-events: none;
+}
+
+@keyframes firefly-pulse {
+    0% { transform: scale(0.8); box-shadow: 0 0 10px 2px rgba(212, 255, 0, 0.4); }
+    100% { transform: scale(1.3); box-shadow: 0 0 25px 10px rgba(212, 255, 0, 0.9); }
+}
+
+@keyframes firefly-float {
+    0%, 100% { transform: translate(0, 0); }
+    33% { transform: translate(var(--move-x), var(--move-y)); }
+    66% { transform: translate(calc(var(--move-x) * -0.6), calc(var(--move-y) * 1.2)); }
+}
+
+@keyframes bug-crawl {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(calc(var(--move-x) * 0.4), calc(var(--move-y) * 0.4)) rotate(15deg); }
+    50% { transform: translate(calc(var(--move-x) * 0.8), calc(var(--move-y) * 0.8)) rotate(-10deg); }
+    75% { transform: translate(calc(var(--move-x) * 0.4), calc(var(--move-y) * 0.4)) rotate(10deg); }
+}
+
+
+#bug-counter-panel { position: fixed; bottom: 20px; right: 20px; background-color: var(--accent-color); color: white; padding: 15px 25px; border-radius: 50px; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.5); z-index: 20000; font-size: 1.1rem; transition: background-color 0.4s ease;}
+#reset-btn { background: none; border: none; color: white; font-weight: bold; font-size: 1.1rem; font-family: inherit; cursor: pointer; padding: 0; }
+.win-pulse { background-color: #28a745 !important; }
+
+/* ========================================= */
+/* ИКОНКИ КАТЕГОРИЙ И КАРУСЕЛЬ               */
+/* ========================================= */
+.certificates-carousel {
+    position: relative; width: 100%; max-width: 600px; margin: 0 auto; 
+    height: 75vh; max-height: 800px; display: flex; justify-content: center; align-items: center; overflow: hidden; 
+}
+.certificate-item { position: absolute; width: 100%; height: 100%; background-color: transparent; display: flex; justify-content: center; align-items: center; opacity: 0; pointer-events: none; }
+.certificate-item.active { opacity: 1; pointer-events: auto; }
+
+.certificate-item img { 
+    max-width: 90%; 
+    max-height: 90%; 
+    object-fit: contain; 
+    border-radius: 8px; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); 
+    transition: border 0.4s ease, box-shadow 0.4s ease;
+}
+
+[data-theme="light"] .certificate-item img {
+    border: 1px solid rgba(0,0,0,0.1);
+    box-shadow: 0 15px 35px rgba(194, 138, 78, 0.3);
+}
+
+
+.carousel-controls { text-align: center; margin-top: 20px; }
+.carousel-btn { background: none; border: 2px solid var(--accent-color); color: var(--accent-color); padding: 8px 16px; border-radius: 50px; cursor: pointer; font-weight: bold; margin: 0 10px; transition: 0.3s ease;}
+.carousel-btn:hover { background-color: var(--accent-color); color: white; }
+
+.category-row { display: flex; justify-content: center; gap: 40px; margin-top: 20px; flex-wrap: wrap; }
+.category-icon { text-align: center; cursor: pointer; transition: transform 0.3s ease; }
+.category-icon:hover { transform: scale(1.1); }
+.category-icon img { 
+    width: 150px; 
+    height: 150px; 
+    border-radius: 35px; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5); 
+    object-fit: cover; 
+    transition: box-shadow 0.4s ease;
+}
+
+[data-theme="light"] .category-icon img {
+    box-shadow: 0 0 20px rgba(194, 138, 78, 0.4);
+}
+.category-icon p { margin-top: 10px; font-weight: bold; color: var(--text-highlight); transition: color 0.4s ease;}
+
+/* Модальное окно (Первый слой) */
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0, 0, 0, 0.85); display: none; justify-content: center; align-items: center; z-index: 99998; opacity: 0; transition: opacity 0.3s ease; }
+.modal-content { position: relative; width: 90%; max-width: 700px; background: var(--modal-content); padding: 40px 20px 20px; border-radius: 12px; border: 2px solid var(--accent-color); box-shadow: 0 0 30px var(--shadow-glow); overflow: hidden; transition: background-color 0.4s ease, border-color 0.4s ease;}
+.close-btn { position: absolute; top: 10px; right: 15px; background: none; border: none; color: var(--accent-color); font-size: 1.5rem; cursor: pointer; transition: color 0.3s; z-index: 100;}
+.close-btn:hover { color: var(--text-highlight); }
+
+/* ========================================= */
+/* ЛАЙТБОКС С КЛИКОМ ПО КАТЕГОРИЯМ           */
+/* ========================================= */
+.lightbox-overlay {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background-color: rgba(0, 0, 0, 0.95);
+    display: none; 
+    align-items: center; 
+    justify-content: center;
+    overflow: auto; 
+    z-index: 100000; 
+    opacity: 0; transition: opacity 0.3s ease;
+}
+
+.lightbox-overlay img {
+    margin: auto; 
+    max-width: 90vw;
+    max-height: 85vh; 
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.8);
+    cursor: zoom-in; 
+}
+
+.lightbox-overlay.is-zoomed-tall { align-items: flex-start; justify-content: flex-start; }
+.lightbox-overlay.is-zoomed-tall img { max-width: none; max-height: none; margin: 50px; cursor: zoom-out; }
+
+.lightbox-overlay.is-zoomed-centered { align-items: center; justify-content: center; }
+.lightbox-overlay.is-zoomed-centered img { max-width: none; max-height: none; margin: auto; cursor: zoom-out; }
+
+.close-lightbox {
+    position: fixed; 
+    top: 20px; right: 30px;
+    color: #ffffff; font-size: 2.5rem; cursor: pointer;
+    z-index: 100001;
+    text-shadow: 0 0 10px rgba(0,0,0,0.8); 
+}
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+    .theme-switch-wrapper { top: -45px; right: 50%; transform: translateX(50%); } 
+    .hero-image-wrapper { display: flex; flex-direction: column; }
+    .cloud-text { position: relative; top: 0; left: 0; width: 100%; margin-top: 20px; padding: 15px; }
+    .cloud-text p { font-size: 0.85rem; }
+    .cloud-text::after { top: -15px; right: 25%; transform: none; border-width: 0 15px 15px 15px; border-color: transparent transparent var(--cloud-bg) transparent; }
+    .stack-grid { grid-template-columns: 1fr; gap: 15px; }
+    .philosophy-section { padding-top: 250px; justify-content: center; }
+    .solo-character { bottom: auto; top: -3px; left: 50%; transform: translateX(-50%); height: 280px; }
+    .cloud-right { width: 100%; z-index: 60; }
+    .cloud-right::after { left: 50%; right: auto; top: -15px; transform: translateX(-50%); border-width: 0 15px 15px 15px; border-color: transparent transparent var(--cloud-bg) transparent; }
+    .category-row { gap: 20px; }
+    .category-icon img { width: 80px; height: 80px; }
+}

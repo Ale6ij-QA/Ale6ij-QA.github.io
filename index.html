@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Алесия Шадрина | QA Engineer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="leaf-shadows"></div>
+    <div class="bg-overlay"></div>
+
+    <header>
+        <div class="container" style="position: relative;">
+            
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="checkbox">
+                    <input type="checkbox" id="checkbox" />
+                    <div class="slider round">
+                        <span class="sun-icon">☀️</span>
+                        <span class="moon-icon">🌙</span>
+                    </div>
+                </label>
+            </div>
+
+            <h1>Алесия Шадрина</h1>
+            <p class="subtitle">QA Engineer<br>Professional Bug Hunter</p>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <section class="about-hero boxed-section">
+            <div class="hero-image-wrapper">
+                <img src="img/bg.png" alt="Алесия" class="hero-bg">
+                <div class="cloud-text">
+                    <p>⠀Я верю, что софт, как и любой организм, должен быть здоровым. Там, где другие видят сухие строчки кода, я вижу живой процесс.</p>
+                </div>
+            </div>
+            <div class="bug" onclick="catchBug(this)" style="top: 20%; right: 3%;"><img src="" alt="bug"></div>
+            <div class="bug" onclick="catchBug(this)" style="top: 85%; left: 5%;"><img src="" alt="bug"></div>
+        </section>
+
+        <section class="boxed-section">
+            <img src="img/bug.gif" alt="Секретный жук" class="peekaboo-top-right">
+
+            <h2>💻 Мой Стек </h2>
+            <div class="stack-grid">
+                <div class="stack-category">
+                    <h3>Core QA & Processes</h3>
+                    <ul>
+                        <li>Manual Testing</li>
+                        <li>Test IT</li>
+                        <li>Jira / Trello / Яндекс Трекер</li>
+                    </ul>
+                </div>
+                <div class="stack-category">
+                    <h3>API & Databases</h3>
+                    <ul>
+                        <li>REST / Swagger</li>
+                        <li>Postman</li>
+                        <li>PostgreSQL / DBeaver / MongoDB</li>
+                        <li>Apache Kafka</li>
+                    </ul>
+                </div>
+                <div class="stack-category">
+                    <h3>Web & Diagnostics</h3>
+                    <ul>
+                        <li>DevTools</li>
+                        <li>Charles</li>
+                        <li>Sentry / Kibana / Grafana</li>
+                        <li>Basic JS / HTML / CSS</li>
+                    </ul>
+                </div>
+                <div class="stack-category">
+                    <h3>Automation & Infrastructure</h3>
+                    <ul>
+                        <li>Python / Requests / Pytest</li>
+                        <li>Cypress</li>
+                        <li>Docker</li>
+                    </ul>
+                </div>
+            </div> 
+            <div class="bug" onclick="catchBug(this)" style="top: 10%; right: 20%;"><img src="" alt="bug"></div>
+            <div class="bug" onclick="catchBug(this)" style="top: 80%; left: 50%;"><img src="" alt="bug"></div>
+        </section>
+
+        <section class="boxed-section">
+            <img src="img/bug.gif" alt="Секретный жук" class="peekaboo-left">
+
+            <h2>💼 Опыт работы </h2>
+            <div class="experience-block">
+                <h3>Старший инженер мониторинга и технической поддержки</h3>
+                <p class="company-period"><strong>Наука-Связь</strong> | Март 2023 — Настоящее время</p>
+                <h4>Ключевые обязанности:</h4>
+                <ul>
+                    <li><strong>Тестирование и верификация:</strong><br>Проведение функционального тестирования внутренних сервисов компании и систем мониторинга после обновлений. Проверка корректности работы клиентских сервисов после устранения инцидентов (регрессионное тестирование на уровне пользователя).</li>
+                    <li><strong>Управление инцидентами:</strong><br>Полный цикл обработки обращений от VIP-клиентов (B2B, B2O, B2G). Локализация проблем, регистрация багов в системе трекинга и контроль их исправления.</li>
+                    <li><strong>Мониторинг и контроль качества:</strong><br>Непрерывный мониторинг состояния сети и качества работы ВКС в периоды пиковых нагрузок и аварий. Анализ работы внешнего контакт-центра: контроль соблюдения стандартов, аудит звонков и формирование отчётности по качеству.</li>
+                    <li><strong>Аналитика и диагностика:</strong><br>Сбор и систематизация логов/данных для эскалации сложных технических проблем на уровень руководства и профильных отделов. Поиск первопричин повторяющихся сбоев.</li>
+                    <li><strong>Оптимизация процессов:</strong><br>Организация и администрирование учётных записей в TTC, настройка прав доступа и оптимизация взаимодействия между техническими отделами.</li>
+                    <li><strong>Technical Writing & Communication:</strong><br>Ведение технической переписки на английском языке, сопровождение иностранных партнёров и англоговорящих клиентов.</li>
+                </ul>
+            </div>
+            <div class="bug" onclick="catchBug(this)" style="top: 25%; left: 42%;"><img src="" alt="bug"></div>
+            <div class="bug" onclick="catchBug(this)" style="top: 65%; right: 10%;"><img src="" alt="bug"></div>
+        </section>
+
+        <section class="boxed-section philosophy-section">
+            <img src="img/solo.png" alt="Алесия" class="solo-character">
+            <div class="cloud-text cloud-right">
+                <p>Для меня баг — это не просто ошибка, а симптом, мешающий системе правильно дышать и развиваться. Я делаю цифровой мир чище, превращая вчерашние уязвимости в фундамент, на который можно опереться!</p>
+            </div>
+            <div class="bug" onclick="catchBug(this)" style="top: 10%; right: 5%;"><img src="" alt="bug"></div>
+            <div class="bug" onclick="catchBug(this)" style="top: 80%; right: 35%;"><img src="" alt="bug"></div>
+        </section>
+
+        <section class="boxed-section">
+            <h2>💡 Мои проекты </h2>
+            <div class="content-block">
+                <div class="project-card">
+                    <h3>Тестирование корпоративного мессенджера<br>(на базе Matrix Synapse)</h3>
+                    <p><strong>Задачи и выполненные работы:</strong></p>
+                    <ul>
+                        <li><strong>API Testing:</strong><br>Проверка базовых запросов через <strong>Postman</strong>. Проверка ответов сервера при создании чатов, добавлении пользователей и отправке сообщений.</li>
+                        <li><strong>Функциональное тестирование:</strong><br>Проверка корректности работы мессенджера в браузере и десктоп-приложении. Тестирование отправки файлов, отображения статусов и работы уведомлений.</li>
+                        <li><strong>Работа с DevTools:</strong><br>Диагностика ошибок в консоли и мониторинг сетевых запросов при возникновении проблем с загрузкой медиафайлов или отправкой сообщений.</li>
+                        <li><strong>Кроссплатформенная проверка:</strong><br>Верификация работы клиента на разных операционных системах (Windows, macOS) для выявления несоответствий в интерфейсе.</li>
+                        <li><strong>Работа с баг-репортами:</strong><br>Описание найденных дефектов с чёткими шагами воспроизведения и ожидаемым результатом для передачи разработчикам.</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><strong>Результат:</strong><br>Повышение стабильности работы внутреннего сервиса. Улучшение процесса передачи информации об ошибках от поддержки к разработке, что ускорило исправление критических багов.</p>
+                </div>
+            </div>
+            <div class="bug" onclick="catchBug(this)" style="top: 40%; left: 25%;"><img src="" alt="bug"></div>
+            <div class="bug" onclick="catchBug(this)" style="top: 85%; right: 15%;"><img src="" alt="bug"></div>
+        </section>
+
+        <section class="certificates-section boxed-section">
+            <img src="img/bug.gif" alt="Секретный жук" class="peekaboo-bottom-right">
+
+            <h2>📜 Мои сертификаты</h2>
+            <div class="category-row">
+                <div class="category-icon" onclick="openModal('stepik')">
+                    <img id="icon-stepik" src="img/stepik.png" alt="Stepik">
+                </div>
+                <div class="category-icon" onclick="openModal('qa')">
+                    <img id="icon-qa" src="img/QA.png" alt="QA Studio">
+                </div>
+                <div class="category-icon" onclick="openModal('diploma')">
+                    <img id="icon-diploma" src="img/diploma.png" alt="Диплом">
+                </div>
+            </div>
+        </section>
+
+        <section class="boxed-section">
+            <h2>📧 Как со мной связаться</h2>
+            <div class="list-container">
+                <ul>
+                    <li>Telegram: <a href="https://t.me/lisa_ural" target="_blank">@lisa_ural</a></li>
+                    <li>Email: <a href="mailto:super.ale6ij@yandex.ru">super.ale6ij@yandex.ru</a></li>
+                </ul>
+            </div> 
+            <div class="bug" onclick="catchBug(this)" style="top: 25%; left: 60%;"><img src="" alt="bug"></div>
+            <div class="bug" onclick="catchBug(this)" style="top: 75%; left: 15%;"><img src="" alt="bug"></div>
+        </section>
+
+    </main>
+
+    <div id="cert-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">✖</button>
+            <div class="certificates-carousel" id="modal-carousel-container"></div>
+            <div class="carousel-controls">
+                <button class="carousel-btn" id="prev-btn">Назад</button>
+                <button class="carousel-btn" id="next-btn">Вперед</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="lightbox" class="lightbox-overlay">
+        <span class="close-lightbox">✖</span>
+        <img id="lightbox-img" src="" alt="Полный размер">
+    </div>
+
+    <div id="bug-counter-panel">
+        <span id="counter-text">Багов поймано: <span id="count">0</span> / 12</span>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script>
+        // =========================================
+        // ЛОГИКА ТЕМНОЙ/СВЕТЛОЙ ТЕМЫ С ПОДМЕНОЙ ИКОНОК
+        // =========================================
+        const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+        const currentTheme = localStorage.getItem('theme');
+        
+        // Ищем наши иконки
+        const iconStepik = document.getElementById('icon-stepik');
+        const iconQa = document.getElementById('icon-qa');
+        const iconDiploma = document.getElementById('icon-diploma');
+
+        // Проверяем сохраненную тему при загрузке
+        if (currentTheme) {
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            if (currentTheme === 'light') {
+                toggleSwitch.checked = true;
+                // ЗАГРУЖАЕМ PNG ДЛЯ СВЕТЛОЙ ТЕМЫ (ИЗ ПАПКИ IMG)
+                iconStepik.src = 'img/stepik_2.png';
+                iconQa.src = 'img/QA_2.png';
+                iconDiploma.src = 'img/diploma_2.png';
+            }
+        }
+
+        // Переключатель темы
+        function switchTheme(e) {
+            if (e.target.checked) {
+                document.documentElement.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                // СТАВИМ КОФЕЙНЫЕ ИКОНКИ (ИЗ ПАПКИ IMG)
+                iconStepik.src = 'img/stepik_2.png';
+                iconQa.src = 'img/QA_2.png';
+                iconDiploma.src = 'img/diploma_2.png';
+            } else {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                // ВОЗВРАЩАЕМ СЕРЫЕ ИКОНКИ (ИЗ ПАПКИ IMG)
+                iconStepik.src = 'img/stepik.png';
+                iconQa.src = 'img/QA.png';
+                iconDiploma.src = 'img/diploma.png';
+            }    
+        }
+        toggleSwitch.addEventListener('change', switchTheme, false);
+
+
+        // =========================================
+        // ИГРА: СВЕТЛЯЧКИ (НОЧЬ) И ЖУКИ (ДЕНЬ)
+        // =========================================
+        let score = 0;
+        const totalBugs = 12; 
+        const panel = document.getElementById('bug-counter-panel');
+        const bugs = document.querySelectorAll('.bug');
+
+        // ПУТИ К ЖУКАМ ИЗ ПАПКИ IMG
+        const bugImages = [
+            'img/bug1.png', 'img/bug2.png', 'img/bug3.png', 
+            'img/bug4.png', 'img/bug5.png', 'img/bug6.png', 'img/bug7.png'
+        ];
+
+        function randomizeBugs() {
+            bugs.forEach(bug => {
+                const imgElement = bug.querySelector('img');
+                const randomImage = bugImages[Math.floor(Math.random() * bugImages.length)];
+                imgElement.src = randomImage;
+
+                const moveX = (Math.random() * 70 - 35) + 'px';
+                const moveY = (Math.random() * 70 - 35) + 'px';
+                const duration = (Math.random() * 6 + 6) + 's';
+                const delay = (Math.random() * -15) + 's';
+
+                bug.style.setProperty('--move-x', moveX);
+                bug.style.setProperty('--move-y', moveY);
+                bug.style.setProperty('--anim-dur', duration);
+                bug.style.setProperty('--anim-del', delay);
+            });
+        }
+        randomizeBugs(); 
+
+        function catchBug(bugElement) {
+            if (bugElement.classList.contains('caught')) return; 
+            bugElement.classList.add('caught');
+            score++;
+            setTimeout(() => {
+                bugElement.style.display = 'none';
+                checkWin();
+            }, 300); 
+            document.getElementById('count').innerText = score;
+        }
+
+        function checkWin() {
+            if (score >= totalBugs) {
+                panel.innerHTML = '<button id="reset-btn" onclick="resetGame()">Начать заново</button>';
+                panel.classList.add('win-pulse');
+            }
+        }
+
+        function resetGame() {
+            score = 0;
+            randomizeBugs(); 
+            
+            bugs.forEach(bug => {
+                bug.classList.remove('caught');
+                bug.style.display = 'flex';
+            });
+            panel.innerHTML = '<span id="counter-text">Багов поймано: <span id="count">0</span> / ' + totalBugs + '</span>';
+            panel.classList.remove('win-pulse');
+        }
+
+        // =========================================
+        // БАЗА ДАННЫХ СЕРТИФИКАТОВ И КАРУСЕЛЬ
+        // =========================================
+        // НЕ ЗАБУДЬ: если сертификаты Stepik и QA называются по-другому, поменяй тут тоже!
+        const certificateDatabase = {
+            'stepik': ['img/file-001.png', 'img/file-002.png', 'img/file-003.png'],
+            'qa': ['img/qa_1.png'], 
+            'diploma': ['img/diploma_placeholder.jpg'] 
+        };
+
+        const modal = document.getElementById('cert-modal');
+        const carousel = document.getElementById('modal-carousel-container');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        
+        let items = []; 
+        let currentIndex = 0;
+        let isAnimating = false; 
+        let currentActiveCategory = ''; 
+
+        function openModal(category) {
+            currentActiveCategory = category; 
+            const images = certificateDatabase[category];
+            carousel.innerHTML = ''; 
+
+            images.forEach((src, index) => {
+                const div = document.createElement('div');
+                div.className = 'certificate-item' + (index === 0 ? ' active' : '');
+                
+                div.innerHTML = `<div style="display: flex; width: 100%; height: 100%; justify-content: center; align-items: center;" onclick="openLightbox('${src}')"><img src="${src}" alt="Сертификат" title="Нажми для увеличения" style="max-width: 100%; max-height: 100%; object-fit: contain; cursor: zoom-in;"></div>`;
+                
+                carousel.appendChild(div);
+            });
+
+            items = carousel.querySelectorAll('.certificate-item');
+            currentIndex = 0; 
+            
+            if(items.length <= 1) {
+                prevBtn.style.display = 'none';
+                nextBtn.style.display = 'none';
+            } else {
+                prevBtn.style.display = 'inline-block';
+                nextBtn.style.display = 'inline-block';
+            }
+
+            modal.style.display = 'flex';
+            setTimeout(() => modal.style.opacity = '1', 10);
+        }
+
+        function closeModal() {
+            modal.style.opacity = '0';
+            setTimeout(() => modal.style.display = 'none', 300);
+        }
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        function showCertificate(newIndex, direction) {
+            if (isAnimating || newIndex === currentIndex || items.length <= 1) return;
+            isAnimating = true;
+
+            const currentItem = items[currentIndex];
+            const newItem = items[newIndex];
+            const outX = direction === 'next' ? '-100%' : '100%';
+            const inX = direction === 'next' ? '100%' : '-100%';
+
+            anime.set(newItem, { translateX: inX, opacity: 1, rotateY: direction === 'next' ? 45 : -45 });
+            newItem.classList.add('active');
+
+            anime({
+                targets: currentItem, translateX: outX, opacity: 0, rotateY: direction === 'next' ? -45 : 45,
+                duration: 600, easing: 'easeInOutExpo',
+                complete: () => currentItem.classList.remove('active')
+            });
+
+            anime({
+                targets: newItem, translateX: '0%', opacity: 1, rotateY: 0,
+                duration: 600, easing: 'easeInOutExpo',
+                complete: () => { currentIndex = newIndex; isAnimating = false; }
+            });
+        }
+
+        nextBtn.addEventListener('click', () => {
+            if(items.length > 1) showCertificate((currentIndex + 1) % items.length, 'next');
+        });
+        prevBtn.addEventListener('click', () => {
+            if(items.length > 1) showCertificate((currentIndex - 1 + items.length) % items.length, 'prev');
+        });
+
+        let touchStartX = 0;
+        let touchEndX = 0;
+        carousel.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX, {passive: true});
+        carousel.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (items.length > 1) {
+                if (touchEndX < touchStartX - 50) showCertificate((currentIndex + 1) % items.length, 'next');
+                if (touchEndX > touchStartX + 50) showCertificate((currentIndex - 1 + items.length) % items.length, 'prev');
+            }
+        }, {passive: true});
+
+        // =========================================
+        // ЛАЙТБОКС С КЛИКОМ ПО КАТЕГОРИЯМ
+        // =========================================
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        function openLightbox(src) {
+            lightboxImg.src = src; 
+            lightbox.classList.remove('is-zoomed-tall', 'is-zoomed-centered'); 
+            lightbox.style.display = 'flex';
+            setTimeout(() => lightbox.style.opacity = '1', 10);
+        }
+
+        function closeLightbox() {
+            lightbox.style.opacity = '0';
+            setTimeout(() => lightbox.style.display = 'none', 300);
+        }
+
+        lightboxImg.addEventListener('click', (e) => {
+            e.stopPropagation(); 
+            if (currentActiveCategory === 'stepik') {
+                lightbox.classList.toggle('is-zoomed-centered');
+            } else {
+                lightbox.classList.toggle('is-zoomed-tall');
+            }
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox || e.target.classList.contains('close-lightbox')) {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>
