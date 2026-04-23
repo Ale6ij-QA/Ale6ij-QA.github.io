@@ -1,10 +1,8 @@
 /* ========================================= */
-/* БАЗОВЫЕ НАСТРОЙКИ (ЗАЩИТА ОТ КАРЕТОК)     */
+/* БАЗОВЫЕ НАСТРОЙКИ                         */
 /* ========================================= */
 
-* {
-    outline: none !important; 
-}
+* { outline: none !important; }
 
 img {
     -webkit-user-drag: none; 
@@ -55,9 +53,11 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.6;
-    overflow-x: hidden; 
     transition: background-color 0.4s ease, color 0.4s ease; 
     caret-color: transparent; 
+    
+    /* БЕЗОПАСНЫЙ ФИКС ДЛЯ SAFARI: прячет улетевших жуков, но не обрезает высоту сайта */
+    overflow-x: clip; 
 }
 
 .container { 
@@ -66,6 +66,11 @@ body {
     margin: 0 auto; 
     padding: 20px; 
     z-index: 1; 
+}
+
+/* Отступ снизу, чтобы контакты точно было видно и они не перекрывались кнопкой */
+main {
+    padding-bottom: 150px;
 }
 
 header {
@@ -89,18 +94,15 @@ h2 {
     transition: color 0.4s ease, border-color 0.4s ease;
 }
 
-
 /* ========================================= */
-/* ФОНОВЫЕ ЭФФЕКТЫ (МАГИЯ ГЛУБИНЫ)           */
+/* ФОНОВЫЕ ЭФФЕКТЫ                           */
 /* ========================================= */
 
 .bg-overlay {
     position: fixed;
-    top: 0; left: 0; width: 100vw; height: 100vh;
+    top: 0; left: 0; right: 0; bottom: 0; 
     z-index: -10; 
     pointer-events: none; 
-    
-    /* ПУТЬ К ФОНУ ЧЕРЕЗ ПАПКУ IMG */
     background-image: url('img/back_night.png'); 
     background-position: bottom center;
     background-repeat: no-repeat;
@@ -116,7 +118,7 @@ h2 {
 
 .leaf-shadows {
     position: fixed;
-    top: 0; left: 0; width: 100vw; height: 100vh;
+    top: 0; left: 0; right: 0; bottom: 0; 
     z-index: -9; 
     pointer-events: none;
     opacity: 0;
@@ -137,7 +139,6 @@ h2 {
     0% { transform: scale(1) translate(0, 0); }
     100% { transform: scale(1.1) translate(-2%, 2%); }
 }
-
 
 /* ========================================= */
 /* КНОПКА ПЕРЕКЛЮЧЕНИЯ ТЕМЫ                  */
@@ -250,9 +251,8 @@ ul li::before {
 a { color: var(--accent-color); text-decoration: none; transition: color 0.3s ease; }
 a:hover { color: var(--text-highlight); text-decoration: underline; }
 
-
 /* ========================================= */
-/* ПАСХАЛКИ: СТАТИЧНЫЕ GIF ЖУКИ              */
+/* ПАСХАЛКИ: СТАТИЧНЫЕ GIF ЖУКИ (Твои размеры!) */
 /* ========================================= */
 
 .peekaboo-top-right,
@@ -294,7 +294,6 @@ a:hover { color: var(--text-highlight); text-decoration: underline; }
     transform: scaleY(-1) rotate(45deg); 
 }
 
-
 /* ========================================= */
 /* МАГИЯ ЖУКОВ И СВЕТЛЯЧКОВ                  */
 /* ========================================= */
@@ -316,7 +315,6 @@ a:hover { color: var(--text-highlight); text-decoration: underline; }
     outline: none;
 }
 
-/* --- ТЕМНАЯ ТЕМА (СВЕТЛЯЧКИ) --- */
 .bug::before {
     content: '';
     position: absolute;
@@ -337,7 +335,6 @@ a:hover { color: var(--text-highlight); text-decoration: underline; }
     transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-/* --- СВЕТЛАЯ ТЕМА (ТВОИ ПИКСЕЛЬНЫЕ ЖУКИ) --- */
 [data-theme="light"] .bug {
     animation: bug-crawl calc(var(--anim-dur) * 0.8) ease-in-out infinite var(--anim-del);
 }
@@ -377,9 +374,38 @@ a:hover { color: var(--text-highlight); text-decoration: underline; }
     75% { transform: translate(calc(var(--move-x) * 0.4), calc(var(--move-y) * 0.4)) rotate(10deg); }
 }
 
+/* ========================================= */
+/* ИГРОВАЯ ПАНЕЛЬ ЖУКОВ                      */
+/* ========================================= */
+#bug-counter-panel { 
+    position: fixed; 
+    bottom: 25px; 
+    right: 20px; 
+    background-color: var(--accent-color); 
+    color: white; 
+    padding: 15px 25px; 
+    border-radius: 50px; 
+    font-weight: bold; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.6); 
+    z-index: 20000; 
+    font-size: 1.1rem; 
+    transition: background-color 0.4s ease;
+    
+    /* БЕЗОПАСНЫЙ ФИКС: Запрещаем Safari прятать панель при скролле */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+}
 
-#bug-counter-panel { position: fixed; bottom: 20px; right: 20px; background-color: var(--accent-color); color: white; padding: 15px 25px; border-radius: 50px; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.5); z-index: 20000; font-size: 1.1rem; transition: background-color 0.4s ease;}
-#reset-btn { background: none; border: none; color: white; font-weight: bold; font-size: 1.1rem; font-family: inherit; cursor: pointer; padding: 0; }
+#reset-btn { 
+    background: none; 
+    border: none; 
+    color: white; 
+    font-weight: bold; 
+    font-size: 1.1rem; 
+    font-family: inherit; 
+    cursor: pointer; 
+    padding: 0; 
+}
 .win-pulse { background-color: #28a745 !important; }
 
 /* ========================================= */
@@ -406,7 +432,6 @@ a:hover { color: var(--text-highlight); text-decoration: underline; }
     box-shadow: 0 15px 35px rgba(194, 138, 78, 0.3);
 }
 
-
 .carousel-controls { text-align: center; margin-top: 20px; }
 .carousel-btn { background: none; border: 2px solid var(--accent-color); color: var(--accent-color); padding: 8px 16px; border-radius: 50px; cursor: pointer; font-weight: bold; margin: 0 10px; transition: 0.3s ease;}
 .carousel-btn:hover { background-color: var(--accent-color); color: white; }
@@ -417,28 +442,26 @@ a:hover { color: var(--text-highlight); text-decoration: underline; }
 .category-icon img { 
     width: 150px; 
     height: 150px; 
-    border-radius: 35px; 
-    box-shadow: 0 4px 15px rgba(0,0,0,0.5); 
-    object-fit: cover; 
-    transition: box-shadow 0.4s ease;
+    border-radius: 0; 
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.5)); 
+    object-fit: contain; 
+    transition: filter 0.4s ease;
 }
 
 [data-theme="light"] .category-icon img {
-    box-shadow: 0 0 20px rgba(194, 138, 78, 0.4);
+    filter: drop-shadow(0 0 15px rgba(194, 138, 78, 0.6));
 }
 .category-icon p { margin-top: 10px; font-weight: bold; color: var(--text-highlight); transition: color 0.4s ease;}
 
-/* Модальное окно (Первый слой) */
-.modal-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(0, 0, 0, 0.85); display: none; justify-content: center; align-items: center; z-index: 99998; opacity: 0; transition: opacity 0.3s ease; }
+/* Модальное окно */
+.modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.85); display: none; justify-content: center; align-items: center; z-index: 99998; opacity: 0; transition: opacity 0.3s ease; }
 .modal-content { position: relative; width: 90%; max-width: 700px; background: var(--modal-content); padding: 40px 20px 20px; border-radius: 12px; border: 2px solid var(--accent-color); box-shadow: 0 0 30px var(--shadow-glow); overflow: hidden; transition: background-color 0.4s ease, border-color 0.4s ease;}
 .close-btn { position: absolute; top: 10px; right: 15px; background: none; border: none; color: var(--accent-color); font-size: 1.5rem; cursor: pointer; transition: color 0.3s; z-index: 100;}
 .close-btn:hover { color: var(--text-highlight); }
 
-/* ========================================= */
-/* ЛАЙТБОКС С КЛИКОМ ПО КАТЕГОРИЯМ           */
-/* ========================================= */
+/* ЛАЙТБОКС */
 .lightbox-overlay {
-    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0; 
     background-color: rgba(0, 0, 0, 0.95);
     display: none; 
     align-items: center; 
@@ -456,10 +479,8 @@ a:hover { color: var(--text-highlight); text-decoration: underline; }
     box-shadow: 0 0 30px rgba(0,0,0,0.8);
     cursor: zoom-in; 
 }
-
 .lightbox-overlay.is-zoomed-tall { align-items: flex-start; justify-content: flex-start; }
 .lightbox-overlay.is-zoomed-tall img { max-width: none; max-height: none; margin: 50px; cursor: zoom-out; }
-
 .lightbox-overlay.is-zoomed-centered { align-items: center; justify-content: center; }
 .lightbox-overlay.is-zoomed-centered img { max-width: none; max-height: none; margin: auto; cursor: zoom-out; }
 
@@ -470,19 +491,57 @@ a:hover { color: var(--text-highlight); text-decoration: underline; }
     z-index: 100001;
     text-shadow: 0 0 10px rgba(0,0,0,0.8); 
 }
-
-/* Мобильная адаптация */
+/* ========================================= */
+/* Мобильная адаптация (ФИНАЛ: FLEXBOX!)     */
+/* ========================================= */
 @media (max-width: 768px) {
-    .theme-switch-wrapper { top: -45px; right: 50%; transform: translateX(50%); } 
+    .theme-switch-wrapper { top: -15px; right: 50%; transform: translateX(50%); } 
     .hero-image-wrapper { display: flex; flex-direction: column; }
-    .cloud-text { position: relative; top: 0; left: 0; width: 100%; margin-top: 20px; padding: 15px; }
+    
+    .cloud-text { position: relative; top: 0; left: 0; width: 100%; margin-top: 15px; padding: 15px; border-radius: 15px; }
     .cloud-text p { font-size: 0.85rem; }
-    .cloud-text::after { top: -15px; right: 25%; transform: none; border-width: 0 15px 15px 15px; border-color: transparent transparent var(--cloud-bg) transparent; }
+    .cloud-text::after { top: -14px; right: 25%; transform: none; border-width: 0 15px 15px 15px; border-color: transparent transparent var(--cloud-bg) transparent; }
+    
     .stack-grid { grid-template-columns: 1fr; gap: 15px; }
-    .philosophy-section { padding-top: 250px; justify-content: center; }
-    .solo-character { bottom: auto; top: -3px; left: 50%; transform: translateX(-50%); height: 280px; }
-    .cloud-right { width: 100%; z-index: 60; }
-    .cloud-right::after { left: 50%; right: auto; top: -15px; transform: translateX(-50%); border-width: 0 15px 15px 15px; border-color: transparent transparent var(--cloud-bg) transparent; }
+    
+    /* 1. ФИКС СЕКЦИИ: Включаем Flexbox. Теперь элементы складываются как кубики Lego! */
+    .philosophy-section { 
+        padding-top: 30px; 
+        display: flex; 
+        flex-direction: column; 
+        align-items: center; 
+    }
+    
+    /* 2. ПЕРСОНАЖ: Возвращаем в нормальный поток (relative). Локоть видно! */
+    .solo-character { 
+        position: relative; 
+        bottom: auto; top: auto; left: auto; 
+        transform: none; 
+        height: 280px; 
+        z-index: 50; 
+        margin-bottom: 0px; /* Никаких зазоров */
+        
+        /* Растворяем только самый низ (плоский срез), локоть не страдает */
+        -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
+        mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
+    }
+    
+    /* 3. ОБЛАКО: Автоматически приклеивается ровно под персонажа */
+    .cloud-right { 
+        width: 100%; 
+        z-index: 60; 
+        margin-right: 0 !important; 
+        margin-top: 10px; /* Легкий отступ от растворяющегося края картинки */
+    }
+    
+    /* 4. ХВОСТИК: Жестко по центру. Указывает прямо на Алесию. */
+    .cloud-right::after { 
+        left: 50%; right: auto; top: -14px; 
+        transform: translateX(-50%); 
+        border-width: 0 15px 15px 15px; 
+        border-color: transparent transparent var(--cloud-bg) transparent; 
+    }
+    
     .category-row { gap: 20px; }
     .category-icon img { width: 80px; height: 80px; }
 }
